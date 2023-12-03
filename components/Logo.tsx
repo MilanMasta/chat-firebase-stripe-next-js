@@ -16,6 +16,7 @@ const Logo = () => {
             priority
             src={LogoImage}
             alt='Logo'
+            height={20}
             className="dark:filter dark:invert"
           />
         </AspectRatio>
