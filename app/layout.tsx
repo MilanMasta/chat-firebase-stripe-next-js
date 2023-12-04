@@ -19,8 +19,8 @@ export default function RootLayout({
   return (
     <ClientProvider>
       <html lang="en">
-        <FireBaseAuthProvider>
-          <body className="flex flex-col min-h-screen">
+        <body className="flex flex-col min-h-screen">
+          <FireBaseAuthProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -30,8 +30,8 @@ export default function RootLayout({
               <Header />
               {children}
             </ThemeProvider >
-          </body>
-        </FireBaseAuthProvider>
+          </FireBaseAuthProvider>
+        </body>
       </html>
     </ClientProvider>
   )

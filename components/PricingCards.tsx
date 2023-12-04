@@ -20,7 +20,7 @@ const tiers = [
     },
     {
         name: "Pro",
-        id: "si_Onldaedsada",
+        id: "pro",
         href: "#",
         priceMonthly: "$5.99",
         description: "Unlock full potential of the app with PRO",
@@ -75,7 +75,7 @@ function PricingCards({ redirect }: { redirect: boolean }) {
                             >
                                 {tier.features.map((feature) => (
                                     <li key={feature} className="flex gap-x-3">
-                                        {/* <CheckIcon className="h-6 w-5 flex-none text-indigo-600" aria-hidden="true" /> */}
+                                        ✔️&nbsp;&nbsp;
                                         {feature}
                                     </li>
                                 ))}

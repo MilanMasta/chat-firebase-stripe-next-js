@@ -24,11 +24,11 @@ export default function FireBaseAuthProvider({
     children: React.ReactNode
 }) {
     const { data: session } = useSession();
+
     useEffect(() => {
         if (!session) return;
-
         syncFirebaseAuth(session);
-    }, [])
+    })
     return <>{children}</>
 }
 
