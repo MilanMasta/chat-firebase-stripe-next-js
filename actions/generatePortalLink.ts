@@ -1,0 +1,41 @@
+"use server"
+
+import { authOptions } from '@/auth';
+import { adminDb } from '@/firebase-admin';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
+import Stripe from 'stripe';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2023-10-16',
+});
+
+export default async function generatePortalLink() {
+    const session = await getServerSession(authOptions);
+    const host = headers().get('host');
+
+    if (!session?.user.id) return console.log("No user id found in session");
+
+    const {
+        user: { id },
+    } = session;
+
+    const returnUrl = 
+    process.env.NODE_ENV === 'development'
+    ? `http://${host}/register`
+    : `https://${host}/register`;
+
+    const doc = await adminDb.collection('customers').doc(id).get();
+
+    if (!doc.data) return console.log("No customer found");
+
+    const stripeId = doc.data()!.stripeId;
+
+    const stripeSession = await stripe.billingPortal.sessions.create({
+        customer: stripeId,
+        return_url: returnUrl,
+    });
+
+    redirect(stripeSession.url);
+}

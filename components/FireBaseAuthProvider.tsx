@@ -28,7 +28,8 @@ export default function FireBaseAuthProvider({
     useEffect(() => {
         if (!session) return;
         syncFirebaseAuth(session);
-    })
+    }, [session])
+
     return <>{children}</>
 }
 

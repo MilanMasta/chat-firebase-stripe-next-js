@@ -4,25 +4,30 @@ import DarkModeToggle from './DarkModeToggle'
 import Logo from './Logo'
 import UserButton from './UserButton'
 import Link from 'next/link';
-import { MessageSquareIcon } from 'lucide-react';
+import { MessagesSquareIcon } from 'lucide-react';
 import CreateChatButton from './CreateChatButton';
+import UpgradeBanner from './UpgradeBanner';
 
 async function Header() {
   const session = await getServerSession(authOptions);
-
   return (
     <header className='sticky top-0 z-50 bg-white dark:bg-gray-900'>
       <nav className='flex flex-col sm:flex-row items-center p-5 pl-2 bg-white dark:bg-gray-900 max-w-7xl mx-auto'>
-        <Logo />
+        <div className="mr-4">
+          <Logo />
+        </div>
 
         <div className='flex-1 flex items-center justify-end space-x-4'>
           {session ? (
             <>
               <Link
+              className="flex ml-4"
                 href={'/chat/'} prefetch={false}>
-                <MessageSquareIcon className='text-black dark:text-white' />
+                <MessagesSquareIcon className='text-black dark:text-white' />
               </Link>
-              <CreateChatButton />
+              <div className="ml-4">
+                <CreateChatButton />
+              </div>
             </>
           ) : (
             <Link href={'/pricing'}>
@@ -33,6 +38,7 @@ async function Header() {
           <UserButton session={session}/>
         </div>
       </nav>
+      <UpgradeBanner />
     </header>
   )
 }

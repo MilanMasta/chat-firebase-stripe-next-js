@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from "next/image"
 import LandingGif from "@/images/landingPage/landing.gif"
+
 export default function Home() {
   return (
     <main>
