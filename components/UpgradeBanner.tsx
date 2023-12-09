@@ -3,13 +3,14 @@
 import { useSubscriptionStore } from '@/store/store';
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
+import { isPro } from '@/lib/utils';
 
 const UpgradeBanner = () => {
-    const subsctiption = useSubscriptionStore((state) => state.subscription);
-    const isPro = subsctiption?.role === 'pro';
+    const subscription = useSubscriptionStore((state) => state.subscription) || null;
+    const isSubActivePro = isPro(subscription);
     const router = useRouter();
     
-    if (isPro) return null;
+    if (isSubActivePro) return null;
 
     return (
         <Button

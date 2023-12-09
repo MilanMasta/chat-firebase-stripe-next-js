@@ -17,9 +17,11 @@ import { useSubscriptionStore } from "@/store/store"
 import LoadingSpinner from "./LoadingSpinner"
 import { StarIcon } from "lucide-react"
 import ManageAccountButton from "./ManageAccountButton"
+import { isPro } from "@/lib/utils"
 
 function UserButton({ session }: { session: Session }) {
     const subscription = useSubscriptionStore(state => state.subscription) || null;
+    const isSubActivePro = isPro(subscription);
 
     if (!session) {
         return (
@@ -51,7 +53,7 @@ function UserButton({ session }: { session: Session }) {
                     </DropdownMenuItem>
                 )}
 
-                {subscription?.role === 'pro' && (
+                {isSubActivePro && (
                     <>
                         <DropdownMenuLabel className="text-xs flex text-[#E935C1] justify-center items-center space-x-1 animate-pulse">
                             <StarIcon fill="#E935C1" />
