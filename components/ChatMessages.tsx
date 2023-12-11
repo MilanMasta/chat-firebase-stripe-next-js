@@ -16,7 +16,7 @@ interface ChatMessagesProps {
 function ChatMessages({ chatId, session, initialMessages }: ChatMessagesProps) {
     const messageEndRef = createRef<HTMLDivElement>();
 
-    const [messages, loading, error] = useCollectionData<Message>(sortedMessageRef(chatId), {
+    const [messages, loading] = useCollectionData<Message>(sortedMessageRef(chatId), {
         initialValue: initialMessages,
     });
 
@@ -43,24 +43,29 @@ function ChatMessages({ chatId, session, initialMessages }: ChatMessagesProps) {
 
                 return (
                     <div key={message.id} className="flex my-2 items-end">
-                        <div className={`flex flex-col relative space-y-2 p-4 w-fit line-clamp-1 mx-2 rounded-lg ${!isSender ? 'ml-auto bg-violet-600 text-white rounded-br-none' : 'bg-gray-100 dark:bg-slate-800 text-black dark:text-white'}`}>
+                        <div className={`flex flex-col relative space-y-2 p-4 w-fit line-clamp-1 mx-2 rounded-lg ${isSender ? 'ml-auto bg-violet-600 text-white rounded-br-none' : 'bg-gray-100 dark:bg-slate-800 text-black dark:text-white'}`}>
                             <p
                                 className={`text-xs italic font-extralight line-clamp-1 ${isSender ? "text-right" : "text-left"}`}
                             >
                                 {message.user.name.split(" ")[0]}
                             </p>
                             <div className="flex flex-col space-x-2">
-                                <p>{message.input}</p>
+                                <p
+                                    className={`${isSender ? "text-right" : "text-left"}`}
+                                >{message.input}</p>
+                                <p className={`text-xs dark:text-white" ${isSender ? "text-right" : "text-left"}`}> {message.timestamp ? new Date(message.timestamp).toLocaleString() : ''}</p>
                             </div>
                         </div>
                         <UserAvatar
                             name={message.user.name}
                             image={message.user.image}
-                            className={`${isSender && "-order-1"}`}
+                            className={`${!isSender && "-order-1"}`}
                         />
                     </div>
                 )
             })}
+
+            <div ref={messageEndRef} />
         </div >
     )
 }

@@ -19,7 +19,7 @@ import { StarIcon } from "lucide-react"
 import ManageAccountButton from "./ManageAccountButton"
 import { isPro } from "@/lib/utils"
 
-function UserButton({ session }: { session: Session }) {
+function UserButton({ session }: { session: Session | null }) {
     const subscription = useSubscriptionStore(state => state.subscription) || null;
     const isSubActivePro = isPro(subscription);
 

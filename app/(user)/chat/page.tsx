@@ -1,18 +1,19 @@
 import ChatList from "@/components/ChatList";
+import { ChatPermisionError } from "@/components/ChatPermisionError";
 
 type Props = {
-    params: {};
-    searchParams: {
-        error: string;
-    };
+  params: {};
+  searchParams: {
+    error: string;
+  };
 };
 
-function ChatsPage() {
+function ChatsPage({ searchParams: { error } }: Props) {
+
   return (
     <div>
-        {/* Chat Permissioner */}
-        {/* ChatList  */}
-        <ChatList />
+      {error == "permision" && <ChatPermisionError />}
+      <ChatList />
     </div>
   )
 }
