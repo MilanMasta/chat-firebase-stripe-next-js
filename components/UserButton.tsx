@@ -25,7 +25,10 @@ function UserButton({ session }: { session: Session | null }) {
 
     if (!session) {
         return (
-            <Button variant={"outline"} onClick={() => signIn()}>
+            <Button
+            variant={"outline"}
+            onClick={() => signIn()}
+            className="flex ml-4 z-50">
                 Sign In
             </Button>
         )
