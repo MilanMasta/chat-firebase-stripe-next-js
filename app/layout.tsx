@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   description: 'Secreet Chat App',
 }
 
+
 export default function RootLayout({
   children,
 }: {
