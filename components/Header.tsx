@@ -21,7 +21,7 @@ async function Header() {
           {session ? (
             <>
               <Link
-              className="flex ml-4 z-50"
+                className="flex ml-4 z-50"
                 href={'/chat/'} prefetch={false}>
                 <MessagesSquareIcon className='text-black dark:text-white' />
               </Link>
@@ -30,12 +30,15 @@ async function Header() {
               </div>
             </>
           ) : (
-            <Link href={'/pricing'}>
+            <Link
+              href={'/pricing'}
+              className="flex ml-4 z-50"
+            >
               Pricing
             </Link>
           )}
           <DarkModeToggle />
-          <UserButton session={session}/>
+          <UserButton session={session} />
         </div>
       </nav>
       <UpgradeBanner />
