@@ -14,6 +14,7 @@ import { isPro } from '@/lib/utils';
 import { toast } from './ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
 import { useRouter } from 'next/navigation';
+import { useSubscriptionStore } from '@/store/store';
 
 const formSchema = z.object({
     input: z.string().max(1000),
@@ -23,6 +24,7 @@ function ChatInput({ chatId }: { chatId: string }) {
 
     const { data: session } = useSession();
     const router = useRouter();
+    const subscription = useSubscriptionStore((state) => state.subscription);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -42,8 +44,8 @@ function ChatInput({ chatId }: { chatId: string }) {
         const messages = (await getDocs(limitedMessageRef(chatId))).docs.map((doc) => doc.data()
         ).length;
 
-        const isProActive = isPro(session?.user.subscription);
-
+        const isProActive = isPro(subscription || null);
+        
         if (!isProActive && messages >= 20) {
             toast({
                 title: 'Upgrade to Pro',
