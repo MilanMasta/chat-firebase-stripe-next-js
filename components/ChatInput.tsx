@@ -42,7 +42,7 @@ function ChatInput({ chatId }: { chatId: string }) {
         const messages = (await getDocs(limitedMessageRef(chatId))).docs.map((doc) => doc.data()
         ).length;
 
-        const isProActive = isPro(session.user);
+        const isProActive = isPro(session?.user.subscription);
 
         if (!isProActive && messages >= 20) {
             toast({
