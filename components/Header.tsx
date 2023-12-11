@@ -21,11 +21,11 @@ async function Header() {
           {session ? (
             <>
               <Link
-              className="flex ml-4"
+              className="flex ml-4 z-50"
                 href={'/chat/'} prefetch={false}>
                 <MessagesSquareIcon className='text-black dark:text-white' />
               </Link>
-              <div className="ml-4">
+              <div className="ml-4 z-50">
                 <CreateChatButton />
               </div>
             </>
