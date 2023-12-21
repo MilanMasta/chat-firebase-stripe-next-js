@@ -12,10 +12,9 @@ export const metadata: Metadata = {
   title: 'Trojan App',
   description: 'Secreet Chat App',
   verification: {
-    google:"google-site-verification=nNM3a6rmk4AUgp2oUFTDovdAwTGEJhxo4H9FG2RlmY4"
+    google:"5EmGdEGXE3_PyV4b8NVAztyBU7MThwRA2qguLxRZIVc"
   }
 }
-
 
 export default function RootLayout({
   children,
