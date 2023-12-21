@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: 'Trojan App',
   description: 'Secreet Chat App',
   verification: {
-    google:"nNM3a6rmk4AUgp2oUFTDovdAwTGEJhxo4H9FG2RlmY4"
+    google:"google-site-verification=nNM3a6rmk4AUgp2oUFTDovdAwTGEJhxo4H9FG2RlmY4"
   }
 }
 
